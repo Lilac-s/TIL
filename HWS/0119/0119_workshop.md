@@ -60,10 +60,12 @@ all_list_sum([[1], [2, 3], [4, 5, 6], [7, 8, 9, 10]]) #=> 55
 
 ```python
 def all_list_sum(a):
-    total = 0
-    for i in a:
-        for j in i:
-            total += j
-    return total
+    result = 0
+    for i in range(len(a)):
+        for j in range(len(a[i])):
+            result += a[i][j]
+    return result
+
+print(all_list_sum([[1], [2, 3], [4, 5, 6], [7, 8, 9, 10]]))
 ```
 
