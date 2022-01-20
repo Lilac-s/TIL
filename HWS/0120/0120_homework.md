@@ -4,7 +4,7 @@
 
 
 
-## 1. 이름 공간(Namespace)
+## 1. 이름 공간 (Namespace)
 
 
 
