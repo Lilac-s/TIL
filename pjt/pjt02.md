@@ -1,6 +1,6 @@
 # PJT 02
 
-### 이번 pjt 를 통해 배운 내용
+### 이번 pjt를 통해 배운 내용
 
 - import requests
 - request를 이용해서 요청 보내기
