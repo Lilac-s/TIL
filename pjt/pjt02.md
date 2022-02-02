@@ -36,7 +36,7 @@
   
       response = requests.get(URL, params = param) #requests로 요청 보내기
       movie_dict = response.json() #json파일로 딕셔너리 만들기
-      return len(movie_dict['results']) # 결과 추출
+      return len(movie_dict['results']) #결과 추출
       
   
   if __name__ == '__main__':
