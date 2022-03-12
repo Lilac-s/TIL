@@ -9,7 +9,7 @@ def solution(numbers, target):
             tmp.append(i + num)
             tmp.append(i - num)
         cal_lst = tmp
-        # print(cal_lst)
+        print(cal_lst)
         # 여기서 바로 cal_lst에 append 하지 않고 tmp를 사용하는 이유는,
         # for문이 순회할수록 cal_lst는 2개씩 더 늘어나고, i는 1씩 증가하므로 cal_lst는 끝없이 증식하는 것을 막기 위함이다.
     for cal in cal_lst:
@@ -17,7 +17,7 @@ def solution(numbers, target):
             answer += 1
     return answer
 
-# numbers = [1, 1, 1, 1, 1]
-# target = 3
-# res = solution(numbers, target)
-# print(res)
+numbers = [1, 1, 1, 1, 1]
+target = 3
+res = solution(numbers, target)
+print(res)
