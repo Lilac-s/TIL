@@ -1,5 +1,6 @@
 # 식의 계산은 연산자 우선 순위를 무시하고 앞에서부터 진행한다.
 # 주어진 수의 순서를 바꾸면 안 된다.
+
 from itertools import permutations
 
 N = int(input()) # 수의 개수
