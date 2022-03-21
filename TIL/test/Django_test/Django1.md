@@ -392,7 +392,7 @@ python manage.py startapp 애플리케이션이름
 > > - 값의 첫 번째 문자를 대문자로 표시한다.
 > >
 > > ```django
-> > {{ value|capfirst }}
+> > {{ value|title }}
 > > ```
 > >
 > > - 주어진 형식에 따라 날짜 형식을 지정한다.
@@ -600,12 +600,25 @@ python manage.py startapp 애플리케이션이름
 #### HTTP
 
 - HyperText Transfer Protocol
+
 - 웹에서 이루어지는 모든 데이터 교환의 기초
+
 - 주어진 리소스가 수행할 작업을 나타내는 request methods를 정의
+
 - HTTP request method 종류
   - GET, POST, PUT, DELETE ...
+  
   - POST
-    - 
+    - csrf 토큰 필요
+    
+    - ```django
+      <form action="{% url 'articles:delete' article.pk %}" method="POST">
+          {% csrf_token %}
+          <button>DELETE</button>
+        </form>
+      ```
+    
+    
 
 
 
@@ -625,6 +638,15 @@ python manage.py startapp 애플리케이션이름
 > ![image-20220320232148745](Django.assets/image-20220320232148745.png)
 >
 > ![image-20220320232158771](Django.assets/image-20220320232158771.png)
+>
+> - action 에는 이후 url 태그를 사용하였음 :star:
+>
+>   ```django
+>   <form action="{% url 'articles:delete' article.pk %}" method="POST">
+>       {% csrf_token %}
+>       <button>DELETE</button>
+>     </form>
+>   ```
 
 
 
@@ -653,11 +675,12 @@ python manage.py startapp 애플리케이션이름
 
 
 
-#### Variable Routing
+#### Variable Routing :star:
 
 - URL 주소를 변수로 사용하는 것
 - URL의 일부를 변수로 지정하여 view 함수의 인자로 넘길 수 있음
-- 즉, 변수 값에 따라 하나의 path()에 여러 페이지를 연결시킬 수 이씅ㅁ
+- 즉, 변수 값에 따라 하나의 path()에 여러 페이지를 연결시킬 수 있음
+- 파일형식:파일형식이름, 문자형식:변수명
   - [사용 예시]
     - path('accounts/user/\<int:user_pk\>/', ...)
       - accounts/user/1 :arrow_right: (1번 user 관련 페이지)
@@ -679,4 +702,65 @@ path('hello/<str:name>/<str:name>/', views.hello),
 - slug
   - ASCII 문자 또는 숫자, 하이픈 및 밑줄 문자로 구성된 모든 슬러그 문자열과 매치
   - ex) 'building-your-1st-django-site'
+
+
+
+#### App URL mapping
+
+- app의 view 함수가 많아지면서 사용하는 path() 또한 많아지고, app 또한 더 많이 작성되기 때문에 프로젝트의 urls.py에서 모두 관리하는 것을 프로젝트 유지보수에 좋지 않음
+- 이제는 각 app에 urls.py를 작성하게 됨
+
+
+
+> pages 앱 생성 및 등록 후 url 작성
+>
+> > ![image-20220321013627760](Django.assets/image-20220321013627760.png)
+>
+> 각각의 앱 안에 urls.py을 생성하고 프로젝트 urls.py에서 각 앱의 urls.py 파일로 URL 매핑을 위탁
+>
+> > ![image-20220321013704973](Django.assets/image-20220321013704973.png)
+
+
+
+#### Including other URLconfs
+
+> urlpattern은 언제든지 다른 URLconf 모듈을 포함(include)할 수 있음
+>
+> include를 이용해서 두 개의 공간으로 분리할 수 있음.
+>
+> > ![image-20220321013752348](Django.assets/image-20220321013752348.png)
+
+- include()
+  - 다른 URLconf(app1/urls.py)들을 참조할 수 있도록 도움
+  - 함수 include()를 만나게 되면, URL의 그 시점까지 일치하는 부분을 잘라내고, 남은 문자열 부분을 후속 처리를 위해 include된 URLconf로 전달
+- django는 명시적 상대경로 (from . module import . . )를 권장
+
+
+
+#### Naming URL patterns
+
+- 이제는 링크에 url을 직접 작성하는 것이 아니라 path()함수의 name 인자를 정의해서 사용
+- Django Template Tag 중 하나인 ulr 태그를 사용해서 path() 함수에 작성한 name을 사용할 수 있음
+- url 설정에 정의된 특정한 경로들의 의존성을 제거할 수 있음
+
+```django
+path('index/', views.index, name='index' ),
+```
+
+```django
+<a href="{% url 'index' %}">메인 페이지</a>
+```
+
+> ![image-20220321015838775](Django.assets/image-20220321015838775.png)
+
+
+
+#### url template tag
+
+```django
+{% url '' %}
+```
+
+- 주어진 URL 패턴 이름 및 선택적 매개 변수와 일치하는 절대 경로 주소를 반환
+- 템플릿에 URL을 하드 코딩하지 않고도 DRY 원칙을 위반하지 않으면서 링크를 출력하는 방법
 
