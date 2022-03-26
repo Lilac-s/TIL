@@ -1,6 +1,3 @@
 # README
 
-
-
-
-
+Today I Learned
