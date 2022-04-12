@@ -16,6 +16,14 @@ from django.views.decorators.http import require_http_methods, require_POST
 from django.shortcuts import render, redirect
 from .forms import CustomUserChangeForm
 
+@require_safe
+def index(request) :
+    users = get_user_model().objects.all()
+    context={
+        'users' : users,
+    }
+    return render(request,'accounts/index.html',context)
+
 # Create your views here.
 @require_http_methods(['GET', 'POST'])
 def login(request):
