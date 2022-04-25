@@ -733,6 +733,6 @@ def change_password(request):
 #### 암호 변경 시 세션 무효화 방지
 
 - `update_sassion_auth_hash(request, user)`
-  - 현재 요청(current request)과 새 session hash가 파생 될 업데이트 된 사용자 객체를 가져오고, session hash를 적절하게 업데이트
+  - 현재 요청(current request)과 새 session hash가 파생될 업데이트 된 사용자 객체를 가져오고, session hash를 적절하게 업데이트
   - 비밀번호가 변경되면 기존 세션과의 회원 인증 정보가 일치하지 않게 되어 로그인 상태를 유지할 수 없기 때문
   - 암호가 변경되어도 로그아웃되지 않도록 새로운 password hash로 session을 업데이트 함
