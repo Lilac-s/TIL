@@ -1,5 +1,5 @@
 # README
 
+Today I Learn
 
-TIL이지만
-카테고리별로 러프하게 쓰고 있습니다.
+:film_projector:
