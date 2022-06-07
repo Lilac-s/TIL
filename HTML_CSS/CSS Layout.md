@@ -1,4 +1,4 @@
-# Web2 - CSS Layout
+# CSS Layout
 
 - CSS layout techniques
   - Display

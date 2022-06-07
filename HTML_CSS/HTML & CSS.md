@@ -1,4 +1,4 @@
-# Web1 - HTML & CSS
+# HTML & CSS
 
 현재 웹 표준 : WHATWG (HTML Living Standard by.Apple, Goolge, Microsoft, Mozilla)
 
