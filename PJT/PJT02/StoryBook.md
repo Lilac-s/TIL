@@ -1,5 +1,7 @@
 # Storybook
 
+0809 TIL
+
 
 
 ## 개요
@@ -26,8 +28,83 @@ Storybook을 사용하면 UI 컴포넌트가 각각 독립적으로 어떻게 �
 
 
 
+## 왜 스토리북인가?
+
+개발하다보면 정말 많은 컴포넌트들을 마주하게 되고, 그것을 관리하게 된다.
+
+때로는 '어떠한 상태'에만 보이는 컴포넌트들을 만들게 되는데, (ex) Login 했을 때만 보이는 페이지)
+
+각각의 상태를 모두 다 만들어 놓고 테스트하기 어려운 경우들이 발생한다.
+
+![image-20220829225024376](Storybook.assets/image-20220829225024376.png)
+
+>  로그인/비로그인/데이터 있음/데이터 없음/로딩중/라우터 ... 여러 상황에 따라 달라지는 컴포넌트들
 
 
-## 참고링크
 
-[daleseo님의 글](https://www.daleseo.com/storybook/)
+이러한 상황에서 스토리북은 복잡한 Presenter 컴포넌트들을 선형적으로 나열한다.
+
+![image-20220829225411066](Storybook.assets/image-20220829225411066.png)
+
+따라서, 우리는 보고 싶은 컴포넌트를 원하는 상황에서 볼 수 있게 된다.
+
+![image-20220829225529449](Storybook.assets/image-20220829225529449.png)
+
+이 컴포넌트들은 state에 의존적이므로, Storybook은 목업 state를 넣어주고 처리할 수 있게 한다.
+
+![image-20220829225632039](Storybook.assets/image-20220829225632039.png)
+
+또한 컴포넌트들을 페이지별로 묶어서 스토리로 보여주도록 할 수 있다.
+
+하나의 스토리는 하나의 페이지가 되고, 그 안에 여러 컴포넌트들이 들어가게 하는 것이다.
+
+이 외에도 Flow 단위로 스토리를 만들 수도 있다. (ex) Sign up Flow)
+
+
+
+>  정리하자면, 
+>
+> 스토리북은 각종 routing과 state들로 연결되어있는 리액트 view 컴포넌트들을 normalize시켜
+>
+> 독립된 환경에서 돌아가게 해주는 간단한 scaffolder이자 UI 테스팅 툴이다.
+
+
+
+### Keyword
+
+- Normalize
+- Modularization
+- Isolated
+
+
+
+## Story
+
+공식문서에서는 'element들을 나타나게 하는 함수' 라고 말하고 있지만,
+
+개발자에 따라서 자율적으로 정의할 수 있다.
+
+[참고영상(09:41 ~)](https://youtu.be/jc9xKzdkYDg)
+
+State 값을 변경하면 동적으로 웹페이지가 변하는 모습을 볼 수 있고,
+
+웹팩을 이용해 코드를 바꾸면서 변하는 모습을 바로 볼 수도 있다.
+
+
+
+## Setup
+
+Storybook에는 CLI가 있어서 간편하게 설정할 수 있다.
+
+`create react app`이 되어 있는 상태에서,
+
+1. 프로젝트로 이동
+
+   `cd my-project-directory`
+
+2. 스토리북 설치
+
+​	`yarn add global @storybook/cli`
+
+​	`getstorybook`
+
