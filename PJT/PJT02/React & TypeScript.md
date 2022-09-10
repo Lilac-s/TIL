@@ -8,7 +8,7 @@
 
   - [create-react-app Adding TypeScript](https://create-react-app.dev/docs/adding-typescript/)
 
-  - `푸르게` 프로젝트에서는 개발환경을 직접 설정한다. ~~bye~~
+  - `푸르게` 프로젝트에서는 개발환경을 직접 설정한다.
 
 - 프로젝트를 만들 때 타입스크립트 기반 프로젝트로 만들기
   - `npx create-react-app --template typescript`
