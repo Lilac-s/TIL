@@ -213,7 +213,7 @@ Docs 애드온은 MDX 형식으로 문서를 작성할 수 있게 하고, 컴포
 
 ## Storybook Driven Development
 
-반드시 따라야 하는 건 아니에요.
+~~반드시 따라야 하는 건 아니에요.~~
 
 ### 1. Define Behavior flow/possible states
 
@@ -256,3 +256,4 @@ Docs 애드온은 MDX 형식으로 문서를 작성할 수 있게 하고, 컴포
 [NaverD2 - Say Hello to Storybook](https://youtu.be/jc9xKzdkYDg)
 
 [velopert.log - Storybook을 다양한 Addon과 함께 활용해보면서 사용법 정복하기](https://velog.io/@velopert/start-storybook)
+
