@@ -26,7 +26,7 @@
 
 3. IPFS와 만들어진 이미지 연결하기
 
-   다시 hashlips로 돌아가서,
+   다시 hashlips로 돌아가서
 
    `src/config.js` 의 General metadata for Ethereum 설정을 변경한다.
 
