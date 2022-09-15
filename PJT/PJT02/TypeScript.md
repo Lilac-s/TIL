@@ -178,7 +178,7 @@ function printOutput(value: any) {
 >
 > [타입스크립트 type과 interface의 공통점과 차이점](https://yceffort.kr/2021/03/typescript-interface-vs-type)
 >
-> 둘의 `확장`에 대해서도 기술되어있다.
+> 둘의 확장에 대해서도 기술되어있다.
 >
 > 프로젝트를 진행할 때 둘 중 하나로의 협의가 필요하다.
 
