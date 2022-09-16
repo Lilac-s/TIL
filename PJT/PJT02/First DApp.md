@@ -53,3 +53,48 @@ DApp = Frontend + Smart Contract on Blockchain
 
 ## First DApp 구현
 
+- Remix를 통해 컨트랙트 컴파일
+- Ropsten 테스트넷에 컨트랙트 배포
+- 컨트랙트와 상호 작용할 간단한 화면 구현(html)
+
+
+
+### Web3.js 사용하기
+
+- html파일에 cdn추가
+- 별도의 javascript 파일 생성
+
+
+
+### web3 객체 생성
+
+![image-20220916234514437](First DApp.assets/image-20220916234514437.png)
+
+- 화면이 로드될 때 web3 객체를 생성한다.
+- MetaMask에서 Ropsten 네트워크의 RPC URL을 확인하여 변수로 생성
+
+
+
+### 계정 정보 생성
+
+![image-20220916235108251](First DApp.assets/image-20220916235108251.png)
+
+- 컨트랙트 호출에 사용할 계정 정보를 세팅한다.
+  - 계정의 개인키를 변수로 생성 (MetaMask에서 export private key)
+  - 개인키로부터 계정을 생성해주는 web3 API를 활용하여 주소를 얻어낸다.
+
+
+
+### retrieve() 호출
+
+- 비용이 소요되지 않는 호출, call.
+
+![image-20220916235228162](First DApp.assets/image-20220916235228162.png)
+
+
+
+### store() 호출
+
+- 트랜잭션을 생성하는, send
+
+![image-20220916235320027](First DApp.assets/image-20220916235320027.png)
