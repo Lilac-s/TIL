@@ -15,14 +15,37 @@ import {
   NavbarHamburger,
   NavbarLoginLink,
 } from "./Navbar.styled";
-import { useState } from "react";
+import { Outlet } from "react-router";
+import { useState, Fragment, useEffect } from "react";
 
 const Navbar = () => {
+  const [ScrollY, setHeaderColor] = useState(0);
+  const [HeaderStatus, setHeaderStatus] = useState(false);
+
+  const Navbar = document.getElementById("navbar");
+  const NavbarHeight: any = Navbar?.getBoundingClientRect().height;
+
+  const handleColor = () => {
+    setHeaderColor(window.pageYOffset);
+    ScrollY > NavbarHeight ? setHeaderStatus(true) : setHeaderStatus(false);
+  };
+
+  useEffect(() => {
+    const watch = () => {
+      window.addEventListener("scroll", handleColor);
+    };
+    handleColor();
+    watch();
+    return () => {
+      window.removeEventListener("scroll", handleColor);
+    };
+  });
+
   const [menuToggle, setMenuToggle] = useState<boolean>(false);
 
   return (
-    <>
-      <NavbarBackground>
+    <Fragment>
+      <NavbarBackground opacity={!HeaderStatus ? "1" : "0"} id="navbar">
         <NavbarItemWrapper>
           <NavbarHamburger onClick={() => (menuToggle ? setMenuToggle(false) : setMenuToggle(true))}>
             <div className="material-icons">menu</div>
@@ -39,7 +62,8 @@ const Navbar = () => {
           </NavbarLoginWrapper>
         </NavbarItemWrapper>
       </NavbarBackground>
-    </>
+      <Outlet />
+    </Fragment>
   );
 };
 
@@ -54,17 +78,23 @@ export default Navbar;
 import { NavLink } from "react-router-dom";
 import { styled } from "../../styles/theme";
 
-export const NavbarBackground = styled.div`
+export const NavbarBackground = styled.div<{ opacity: string }>`
   display: flex;
   position: fixed;
   flex-direction: row;
   align-items: center;
+  max-width: 100%;
   height: 4rem;
   width: ${({ theme }) => theme.sizes.pc};
   padding: 0rem 1.5rem;
   gap: 10.625rem;
   background-image: linear-gradient(350deg, #666af6, #5f6bff, #5299ff, #1ec5ff);
+  opacity: ${(props) => props.opacity};
   box-shadow: ${({ theme }) => theme.shadows.shadow600};
+  transition: opacity 0.5s linear;
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 export const NavbarItemWrapper = styled.div`
