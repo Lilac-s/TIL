@@ -32,3 +32,6 @@ export default ScrollToAppear;
 
 ```
 
+
+
+location 값은 늦추거나 빨리 하고 싶을 때 넣음
