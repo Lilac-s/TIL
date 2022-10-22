@@ -2,8 +2,6 @@
 
 `pages` 디렉토리에 추가되면 자동으로 경로를 사용할 수 있다.
 
-
-
 ### Index routes
 
 The router will automatically route files named `index` to the root of the directory.
@@ -118,5 +116,4 @@ function Posts({ posts }) {
 
 export default Posts
 ```
-
 
