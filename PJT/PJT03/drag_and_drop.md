@@ -1,37 +1,142 @@
 # drag_and_drop
 
 ```react
-ball.onmousedown = function(event) {
-  // (1) absolute 속성과 zIndex 프로퍼티를 수정해 공이 제일 위에서 움직이기 위한 준비를 합니다.
-  ball.style.position = 'absolute';
-  ball.style.zIndex = 1000;
+import { useState } from "react";
+import styles from "./drag.module.scss";
+import classNames from "classnames/bind";
 
-  // 현재 위치한 부모에서 body로 직접 이동하여
-  // body를 기준으로 위치를 지정합니다.
-  document.body.append(ball);
+const Drag = () => {
+  const cx = classNames.bind(styles);
 
-  // 공을 pageX, pageY 좌표 중앙에 위치하게 합니다.
-  function moveAt(pageX, pageY) {
-    ball.style.left = pageX - ball.offsetWidth / 2 + 'px';
-    ball.style.top = pageY - ball.offsetHeight / 2 + 'px';
-  }
+  const circles = ["aquamarine", "rebeccapurple", "palevioletred"];
 
-  // 포인터 아래로 공을 이동시킵니다.
-  moveAt(event.pageX, event.pageY);
+  const [circleStatus, setCircleStatus] = useState(0);
+  const [boxStatus, setBoxStatus] = useState(0);
+  const [catchCircle, setCatchCircle] = useState();
 
-  function onMouseMove(event) {
-    moveAt(event.pageX, event.pageY);
-  }
-
-  // (2) mousemove로 공을 움직입니다.
-  document.addEventListener('mousemove', onMouseMove);
-
-  // (3) 공을 드롭하고, 불필요한 핸들러를 제거합니다.
-  ball.onmouseup = function() {
-    document.removeEventListener('mousemove', onMouseMove);
-    ball.onmouseup = null;
+  const onDragStart = (e) => {
+    console.log("잡았다!");
   };
 
+  const onDragEnter = (e) => {
+    console.log("들어왔다!");
+    setCircleStatus(1);
+  };
+
+  const onDragOver = (e) => {
+    console.log("지금 위에 있어!");
+    setCircleStatus(1);
+  };
+
+  const onDragEnd = (e) => {
+    if (circleStatus === 1) {
+      console.log("잘했어!");
+      setBoxStatus(1);
+      setCatchCircle(e.currentTarget.dataset.position);
+    } else if (circleStatus === 0) {
+      console.log("다른 데 놓았어!");
+    }
+  };
+
+  const onDragLeave = (e) => {
+    console.log("나갔다!");
+    setCircleStatus(0);
+  };
+
+  const onDrop = (e) => {
+    console.log("??");
+  };
+
+  return (
+    <div className={styles.background}>
+      <div className={styles.flex}>
+        {circles.map((title, index) => (
+          <div
+            key={index}
+            className={cx(title)}
+            draggable={true}
+            data-position={title}
+            onDragStart={onDragStart}
+            onDragEnd={onDragEnd}
+            onDrop={onDrop}
+          >
+            드래그 앤 드롭
+          </div>
+        ))}
+      </div>
+
+      <div
+        className={
+          circleStatus === 1 ? cx("drop", "onthebox") : boxStatus === 1 ? cx("drop", catchCircle) : styles.drop
+        }
+        onDragEnter={onDragEnter}
+        onDragOver={onDragOver}
+        onDragLeave={onDragLeave}
+      >
+        여기로 떨어트려 주세요
+      </div>
+    </div>
+  );
 };
+
+export default Drag;
+
+```
+
+
+
+```scss
+.aquamarine {
+  background-color: aquamarine;
+  border-radius: 100rem;
+  width: 5rem;
+  height: 5rem;
+  cursor: grab;
+}
+
+.rebeccapurple {
+  background-color: rebeccapurple;
+  border-radius: 100rem;
+  width: 5rem;
+  height: 5rem;
+  cursor: grab;
+}
+
+.palevioletred {
+  background-color: palevioletred;
+  border-radius: 100rem;
+  width: 5rem;
+  height: 5rem;
+  cursor: grab;
+}
+
+.flex {
+  @include flexDiv;
+}
+
+.background {
+  @include defaultLayout;
+  gap: 10rem;
+}
+
+.drop {
+  background-color: cornflowerblue;
+  width: 20rem;
+  height: 20rem;
+  cursor: pointer;
+  &.onthebox {
+    background-color: yellow;
+  }
+  &.aquamarine {
+    background-color: aquamarine;
+  }
+  &.rebeccapurple {
+    background-color: rebeccapurple;
+  }
+  &.palevioletred {
+    background-color: palevioletred;
+  }
+}
+
 ```
 
