@@ -61,7 +61,7 @@ const BuoquetCustom = () => {
     <>
       <main className={styles.custom_wrapper}>
         <aside className={styles.recommend_wrapper}>
-          <div className={styles.recommend_menu}>추천</div>
+          
           <div className={styles.recommend_menu}>추천</div>
           <div className={styles.recommend_menu}>추천</div>
           <div className={styles.recommend_menu}>추천</div>
