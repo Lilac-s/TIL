@@ -80,7 +80,6 @@ const Drag = () => {
 };
 
 export default Drag;
-
 ```
 
 
@@ -137,6 +136,5 @@ export default Drag;
     background-color: palevioletred;
   }
 }
-
 ```
 
