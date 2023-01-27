@@ -8,6 +8,4 @@ Update : 기존의 내용 업데이트
 
 Remove : 기존의 내용 삭제
 
-Refactor : 전면 수정
-
 Rename : 파일명 수정
